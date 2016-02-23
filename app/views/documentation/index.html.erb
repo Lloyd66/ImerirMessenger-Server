@@ -1,0 +1,74 @@
+<div class="container">
+
+	<div class="page-header">
+		<h1>Application Chat</h1>
+		<p class="lead">Développement d'une application permettant d'envoyer de chatter sur Android.
+			<br/>
+			Fonctionnalités
+			<ul>
+				<li>Gérer la création de compte, ainsi que la connexion d'un utilisateur</li>
+				<li>Lister mes canaux</li>
+				<li>Créer/Supprimer un canal</li>
+				<li>Rejoindre/Quitter un canal</li>
+				<li>Lister les derniers messages d'un canal</li>
+				<li>Envoyer un message à un canal</li>
+			</ul>
+		</p>
+	</div>
+
+	<h3>Développement de l'API</h3>
+	<p>
+		Pour ceux qui le souhaient, vous pouvez créer votre propre API avec les outils que vous voulez.
+		<br/>
+		Vous pouvez aussi utiliser l'API développée par votre dévoué professeur :).
+	</p>
+
+	<h3>Documentation de l'API</h3>
+	<p>Toutes les api se trouvent ici : /api/v1/ </p>
+	<h4>User (endpoint : /api/v1/user) </h4>
+	<p>
+		<b>POST /</b> : Créer un compte. <br/>
+		Paramètre attendu => un objet "user" contenant 2 paramètres : "email" et "password".
+	</p>
+
+	<p>
+		<b>POST /connect</b> : Connexion. <br/>
+		Paramètre attendu => un objet "user" contenant 2 paramètres : "email" et "password".<br/>
+		Le serveur renvoie en réponse un token (value + expires_at), la valeur du token devra être envoyée en paramètre dans chaque appel à l'API Note.
+	</p>
+
+	<h4>Channel (endpoint : /api/v1/channel)</h4>
+	<p>Tous les appels à cet api sont authentifié via le token obtenu lors de la connexion, il faut donc l'enregistrer dans l'application. (Le paramètre a passé est "token")</p>
+	<p>
+		<b>GET /</b> : Liste des canaux disponibles. Si le paramètre mine=true est envoyé, l'API ne renvoie que les canaux que l'utilisateur a rejoint.<br/>
+	</p>
+
+	<p>
+		<b>POST /</b> : Créer un nouveau canal. <br/>
+		Paramètre attendu => un objet "channel" contenant 1 paramètre : "name".<br/>
+	</p>
+
+	<p>
+		<b>POST /:channel_name/join</b> : Rejoindre un canal existant. <br/>
+	</p>
+
+	<p>
+		<b>DELETE /:channel_name/quit</b> : Quitter un canal existant. <br/>
+	</p>
+
+	<p>
+		<b>DELETE /:channel_name</b> : Supprimer un canal. Seul le propriétaire du canal peut le supprimer <br/>
+	</p>
+
+	<h4>Message (endpoint : /api/v1/channel/:channel_name/message)</h4>
+	<p>Tous les appels à cet api sont authentifié via le token obtenu lors de la connexion, il faut donc l'enregistrer dans l'application. (Le paramètre a passé est "token")</p>
+	<p>
+		<b>GET /</b> : Liste les derniers messages envoyés sur le canal.<br/>
+	</p>
+
+	<p>
+		<b>POST /</b> : Envoyer un message. <br/>
+		Paramètre attendu => un objet "message" contenant 1 paramètre : "message".<br/>
+	</p>
+
+</div>
